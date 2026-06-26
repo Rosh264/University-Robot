@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Welcome Bot — Component List and Workflow | Garden City University</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.5;
+      padding: 40px 50px;
+    }
+
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .date {
+      text-align: center;
+      font-size: 10px;
+      color: #999;
+      margin-bottom: 28px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 24px 0;
+    }
+
+    h2 {
+      font-size: 16px;
+      color: #222;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #333;
+    }
+
+    h3 {
+      font-size: 13px;
+      color: #333;
+      margin: 14px 0 6px;
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 20px;
+      font-size: 11px;
+    }
+
+    th, td {
+      border: 1px solid #bbb;
+      padding: 6px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #e8e8e8;
+      font-weight: bold;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    tr:nth-child(even) td {
+      background: #f7f7f7;
+    }
+
+    /* ===== SUMMARY BOX ===== */
+    .summary-box {
+      border: 1.5px solid #333;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      background: #f9f9f9;
+    }
+
+    .summary-box h2 {
+      border-bottom: none;
+      margin-bottom: 8px;
+    }
+
+    .summary-grid {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .summary-grid .item {
+      padding: 8px 16px;
+    }
+
+    .summary-grid .number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .summary-grid .label {
+      font-size: 10px;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    /* ===== WORKFLOW ===== */
+    .step {
+      margin-bottom: 14px;
+      padding-left: 10px;
+      border-left: 3px solid #999;
+    }
+
+    .step h3 {
+      margin: 0 0 3px;
+    }
+
+    .step p {
+      margin: 0 0 4px;
+      font-size: 11px;
+      color: #444;
+    }
+
+    .step .chips {
+      font-size: 10px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ===== CIRCUIT DIAGRAM ===== */
+    .circuit-box {
+      background: #1a1a2e;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      padding: 20px 24px;
+      border-radius: 4px;
+      margin: 10px 0 20px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .circuit-box .pin { color: #64b5f6; }
+    .circuit-box .comp { color: #81c784; }
+    .circuit-box .pwr { color: #ffb74d; }
+    .circuit-box .head { color: #ce93d8; font-weight: bold; }
+
+    /* ===== NOTE BOX ===== */
+    .note-box {
+      border: 1px solid #e0c36a;
+      background: #fffde7;
+      padding: 10px 14px;
+      margin: 10px 0 16px;
+      font-size: 11px;
+      color: #5d4e00;
+    }
+
+    .note-box strong {
+      color: #333;
+    }
+
+    /* ===== PAGE BREAKS ===== */
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { padding: 20px 30px; }
+      .page-break { page-break-before: always; }
+      table { page-break-inside: avoid; }
+      .step { page-break-inside: avoid; }
+      .circuit-box { background: #f0f0f0; color: #1a1a1a; }
+      .circuit-box .pin { color: #1565c0; }
+      .circuit-box .comp { color: #2e7d32; }
+      .circuit-box .pwr { color: #e65100; }
+      .circuit-box .head { color: #6a1b9a; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--  HEADER                                                      -->
+<!-- ============================================================ -->
+<h1>AI Welcome Bot — Garden City University</h1>
+<div class="subtitle">Complete Component List, Wiring Diagram, and System Workflow</div>
+<div class="date">Project Documentation | June 2026</div>
+
+<!-- ============================================================ -->
+<!--  SUMMARY                                                     -->
+<!-- ============================================================ -->
+<div class="summary-box">
+  <h2>Project Summary</h2>
+  <div class="summary-grid">
+    <div class="item"><div class="number">6</div><div class="label">Hardware Modules</div></div>
+    <div class="item"><div class="number">1</div><div class="label">Arduino Sketch</div></div>
+    <div class="item"><div class="number">7</div><div class="label">Libraries Used</div></div>
+    <div class="item"><div class="number">10</div><div class="label">GPIO Pins Used</div></div>
+    <div class="item"><div class="number">3</div><div class="label">Protocols (I2S, I2C, PWM)</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  1. BILL OF MATERIALS                                        -->
+<!-- ============================================================ -->
+<h2>1. Bill of Materials (BOM)</h2>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Component</th><th>Qty</th><th>Category</th><th>Connection / Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>ESP32 Dev Module (WROOM-32)</td><td>1</td><td>Controller</td><td>Main controller with WiFi; powered via 5V USB or 5V/2A supply</td></tr>
+    <tr><td>2</td><td>INMP441 MEMS Microphone</td><td>1</td><td>Audio Input</td><td>I2S Port 0; WS→GPIO33, SCK→GPIO32, SD→GPIO35, VDD→3.3V, L/R→GND</td></tr>
+    <tr><td>3</td><td>MAX98357A I2S Amplifier</td><td>1</td><td>Audio Output</td><td>I2S Port 1; LRC→GPIO25, BCLK→GPIO26, DIN→GPIO22, VIN→5V</td></tr>
+    <tr><td>4</td><td>8Ω Speaker (3W)</td><td>1</td><td>Audio Output</td><td>Connected to MAX98357A SPK+ and SPK– terminals</td></tr>
+    <tr><td>5</td><td>1.3" OLED Display (SH1106, I2C)</td><td>1</td><td>Display</td><td>SDA→GPIO21, SCL→GPIO19, VCC→3.3V, I2C address 0x3C</td></tr>
+    <tr><td>6</td><td>PIR Motion Sensor (HC-SR501)</td><td>1</td><td>Sensor</td><td>OUT→GPIO27, VCC→5V, GND→GND; adjustable sensitivity & delay</td></tr>
+    <tr><td>7</td><td>SG90 Servo Motor</td><td>1</td><td>Actuator</td><td>Signal→GPIO18 (PWM), VCC→5V, GND→GND; greeting wave motion</td></tr>
+    <tr><td>8</td><td>5V / 2A DC Power Supply</td><td>1</td><td>Power</td><td>Powers ESP32, Servo, and MAX98357A; all grounds connected</td></tr>
+    <tr><td>9</td><td>Breadboard + Jumper Wires</td><td>1 set</td><td>Prototyping</td><td>For circuit assembly and connections</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!--  2. COMPONENT DETAILS BY CATEGORY                            -->
+<!-- ============================================================ -->
+<h2>2. Component Details by Category</h2>
+
+<h3>2.1 Controller (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ESP32 WROOM-32</td>
+      <td>Dual-core 240MHz, 520KB SRAM, WiFi 802.11 b/g/n, Bluetooth 4.2, 34 GPIO</td>
+      <td>Central controller running audio capture, I2S playback, OLED display, servo control, WiFi communication to AI backend</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.2 Audio Input — INMP441 MEMS Microphone (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>INMP441</td>
+      <td>I2S digital output, 24-bit, SNR 61dB, sensitivity -26dBFS, VDD 1.8–3.3V</td>
+      <td>Captures visitor voice questions as digital audio via I2S protocol (Port 0). Records 5 seconds at 16kHz 16-bit mono (~160KB)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Important:</strong> The INMP441 runs on 3.3V only. Do NOT connect to 5V. The L/R pin is tied to GND to select the left channel.
+</div>
+
+<h3>2.3 Audio Output — MAX98357A + Speaker (2 items)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MAX98357A Amplifier</td>
+      <td>I2S input, Class D amplifier, 3.2W output, VIN 2.5–5.5V</td>
+      <td>Receives digital audio via I2S (Port 1) and amplifies it to drive the speaker. Plays greeting and AI response audio.</td>
+    </tr>
+    <tr>
+      <td>8Ω 3W Speaker</td>
+      <td>8 ohm impedance, 3 watt</td>
+      <td>Connected to MAX98357A SPK+ and SPK– outputs. Produces audible speech for visitors.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.4 Display — 1.3" OLED (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.3" OLED (SH1106)</td>
+      <td>128×64 pixels, I2C interface, address 0x3C, VCC 3.3V</td>
+      <td>Displays welcome message, recording status, AI response text, and system status. Uses U8g2 library with software I2C on custom pins (SDA=GPIO21, SCL=GPIO19).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.5 Sensor — PIR Motion (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HC-SR501 PIR Sensor</td>
+      <td>Detection range 3–7m, adjustable delay 0.3–200s, VCC 5–20V</td>
+      <td>Detects approaching visitors via infrared motion. Triggers the welcome sequence when motion is detected. 10-second cooldown between triggers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.6 Actuator — SG90 Servo (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SG90 Micro Servo</td>
+      <td>Rotation 0–180°, operating voltage 4.8–6V, stall torque 1.8 kg·cm, PWM 50Hz</td>
+      <td>Performs a waving greeting animation (3 waves: 30°→150°→90°) when a visitor is detected. Connected to GPIO18 via ESP32Servo library.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2.7 Power Supply (1 item)</h3>
+<table>
+  <thead>
+    <tr><th>Component</th><th>Specification</th><th>Function</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5V / 2A DC Supply</td>
+      <td>Output: 5V regulated, 2A minimum capacity</td>
+      <td>Powers ESP32 (via 5V pin or USB), SG90 servo, and MAX98357A amplifier. All grounds connected together. INMP441 and OLED use 3.3V from ESP32 regulator.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!--  3. ESP32 PIN MAPPING                                        -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2>3. ESP32 GPIO Pin Mapping</h2>
+
+<table>
+  <thead>
+    <tr><th>GPIO</th><th>Component</th><th>Signal Type</th><th>Protocol</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>GPIO33</td><td>INMP441 — WS (Word Select)</td><td>I2S Clock</td><td>I2S Port 0</td><td>Left/Right channel select clock</td></tr>
+    <tr><td>GPIO32</td><td>INMP441 — SCK (Serial Clock)</td><td>I2S Clock</td><td>I2S Port 0</td><td>Bit clock for data transfer</td></tr>
+    <tr><td>GPIO35</td><td>INMP441 — SD (Serial Data)</td><td>I2S Data IN</td><td>I2S Port 0</td><td>Input only pin; receives audio data</td></tr>
+    <tr><td>GPIO25</td><td>MAX98357A — LRC</td><td>I2S Clock</td><td>I2S Port 1</td><td>Left/Right clock for speaker output</td></tr>
+    <tr><td>GPIO26</td><td>MAX98357A — BCLK</td><td>I2S Clock</td><td>I2S Port 1</td><td>Bit clock for speaker output</td></tr>
+    <tr><td>GPIO22</td><td>MAX98357A — DIN</td><td>I2S Data OUT</td><td>I2S Port 1</td><td>Audio data output to amplifier</td></tr>
+    <tr><td>GPIO21</td><td>OLED — SDA</td><td>I2C Data</td><td>Software I2C</td><td>Custom SDA pin (not default)</td></tr>
+    <tr><td>GPIO19</td><td>OLED — SCL</td><td>I2C Clock</td><td>Software I2C</td><td>Custom SCL pin (not default)</td></tr>
+    <tr><td>GPIO27</td><td>PIR Sensor — OUT</td><td>Digital IN</td><td>GPIO</td><td>HIGH when motion detected</td></tr>
+    <tr><td>GPIO18</td><td>SG90 Servo — Signal</td><td>PWM OUT</td><td>PWM (50Hz)</td><td>Controlled via ESP32Servo library</td></tr>
+    <tr><td>3.3V</td><td>INMP441 VDD, OLED VCC</td><td>Power</td><td>—</td><td>From ESP32 onboard 3.3V regulator</td></tr>
+    <tr><td>5V / VIN</td><td>PIR VCC, Servo VCC, MAX98357A VIN</td><td>Power</td><td>—</td><td>From external 5V/2A supply</td></tr>
+    <tr><td>GND</td><td>All components</td><td>Ground</td><td>—</td><td>Common ground for all modules</td></tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Pin Conflict Avoidance:</strong> I2S Port 0 (Mic) and I2S Port 1 (Speaker) use completely separate pins. OLED uses software I2C on GPIO21/19 to avoid conflicts with the default I2C pins (GPIO21/22, where GPIO22 is used by MAX98357A DIN).
+</div>
+
+<!-- ============================================================ -->
+<!--  4. WIRING DIAGRAM                                           -->
+<!-- ============================================================ -->
+<h2>4. Wiring Diagram</h2>
+
+<div class="circuit-box"><span class="head">                    ┌─────────────────────┐</span>
+<span class="head">                    │       ESP32         │</span>
+<span class="head">                    │                     │</span>
+                    │ <span class="pin">GPIO33</span> ───── WS     │   ← <span class="comp">INMP441</span>
+                    │ <span class="pin">GPIO32</span> ───── SCK    │   ← <span class="comp">INMP441</span>
+                    │ <span class="pin">GPIO35</span> <──── SD     │   ← <span class="comp">INMP441</span>
+                    │                     │
+                    │ <span class="pin">GPIO25</span> ───── LRC    │   → <span class="comp">MAX98357A</span>
+                    │ <span class="pin">GPIO26</span> ───── BCLK   │   → <span class="comp">MAX98357A</span>
+                    │ <span class="pin">GPIO22</span> ───── DIN    │   → <span class="comp">MAX98357A</span>
+                    │                     │
+                    │ <span class="pin">GPIO21</span> ───── SDA    │   → <span class="comp">OLED 1.3"</span>
+                    │ <span class="pin">GPIO19</span> ───── SCL    │   → <span class="comp">OLED 1.3"</span>
+                    │                     │
+                    │ <span class="pin">GPIO27</span> <──── OUT    │   ← <span class="comp">PIR HC-SR501</span>
+                    │ <span class="pin">GPIO18</span> ───── Signal │   → <span class="comp">SG90 Servo</span>
+                    │                     │
+                    │ <span class="pwr">3.3V</span>  ───── VDD/VCC │   → <span class="comp">INMP441 + OLED</span>
+                    │ <span class="pwr">GND</span>   ───── Common  │   → All Components
+<span class="head">                    └─────────┬───────────┘</span>
+                              │
+                 ─────────────┼─────────────
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+          ▼                   ▼                   ▼
+
+┌─────────────┐     ┌────────────────┐    ┌─────────────┐
+│ <span class="comp">INMP441 Mic</span> │     │ <span class="comp">1.3" OLED I2C</span>  │    │ <span class="comp">PIR Sensor</span>  │
+├─────────────┤     ├────────────────┤    ├─────────────┤
+│ VDD → <span class="pwr">3.3V</span>  │     │ VCC → <span class="pwr">3.3V</span>     │    │ VCC → <span class="pwr">5V</span>    │
+│ GND → GND   │     │ GND → GND      │    │ GND → GND   │
+│ WS  → <span class="pin">G33</span>  │     │ SDA → <span class="pin">G21</span>     │    │ OUT → <span class="pin">G27</span>  │
+│ SCK → <span class="pin">G32</span>  │     │ SCL → <span class="pin">G19</span>     │    └─────────────┘
+│ SD  → <span class="pin">G35</span>  │     └────────────────┘
+│ L/R → GND   │
+└─────────────┘
+
+┌─────────────────┐     ┌──────────────┐
+│ <span class="comp">MAX98357A AMP</span>   │     │ <span class="comp">SG90 Servo</span>   │
+├─────────────────┤     ├──────────────┤
+│ VIN  → <span class="pwr">5V</span>       │     │ Signal → <span class="pin">G18</span> │
+│ GND  → GND      │     │ VCC    → <span class="pwr">5V</span>  │
+│ LRC  → <span class="pin">G25</span>     │     │ GND    → GND │
+│ BCLK → <span class="pin">G26</span>     │     └──────────────┘
+│ DIN  → <span class="pin">G22</span>     │
+│ SPK+ → Speaker+ │
+│ SPK- → Speaker- │
+└─────────────────┘
+
+<span class="head">         5V / 2A Power Supply</span>
+                 │
+       ┌─────────┼─────────┐
+       │         │         │
+       ▼         ▼         ▼
+    <span class="comp">ESP32</span>     <span class="comp">Servo</span>    <span class="comp">MAX98357A</span>
+
+  <span class="pwr">All Grounds Connected Together</span></div>
+
+<!-- ============================================================ -->
+<!--  5. SOFTWARE                                                 -->
+<!-- ============================================================ -->
+<h2>5. Software and Libraries</h2>
+
+<h3>5.1 Arduino Libraries</h3>
+<table>
+  <thead>
+    <tr><th>Library</th><th>Author</th><th>Purpose</th><th>Install Method</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>WiFi.h</td><td>Built-in (ESP32)</td><td>WiFi connectivity for HTTP communication to backend server</td><td>Built-in</td></tr>
+    <tr><td>HTTPClient.h</td><td>Built-in (ESP32)</td><td>HTTP POST/GET requests to send audio and receive AI responses</td><td>Built-in</td></tr>
+    <tr><td>driver/i2s.h</td><td>Built-in (ESP-IDF)</td><td>Raw I2S driver for INMP441 microphone input and MAX98357A speaker output</td><td>Built-in</td></tr>
+    <tr><td>U8g2</td><td>oliver (olikraus)</td><td>SH1106 OLED display driver with software I2C support for custom pins</td><td>Library Manager</td></tr>
+    <tr><td>ESP32Servo</td><td>Kevin Harrington</td><td>Servo motor control on ESP32 (replaces standard Servo.h)</td><td>Library Manager</td></tr>
+    <tr><td>ArduinoJson</td><td>Benoît Blanchon</td><td>Parse JSON responses from the backend server</td><td>Library Manager</td></tr>
+    <tr><td>SPIFFS</td><td>Built-in (ESP32)</td><td>Internal flash filesystem for storing pre-recorded greeting audio</td><td>Built-in</td></tr>
+  </tbody>
+</table>
+
+<h3>5.2 Backend Software Stack</h3>
+<table>
+  <thead>
+    <tr><th>Technology</th><th>Version</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Python</td><td>3.9+</td><td>Backend server runtime</td></tr>
+    <tr><td>Flask</td><td>3.1.1</td><td>Web framework for REST API endpoints</td></tr>
+    <tr><td>Flask-SocketIO</td><td>5.5.1</td><td>WebSocket support for real-time dashboard updates</td></tr>
+    <tr><td>google-genai</td><td>1.14.0</td><td>Google Gemini API client for STT, AI, and TTS</td></tr>
+    <tr><td>Flask-CORS</td><td>5.0.1</td><td>Cross-Origin Resource Sharing for ESP32 HTTP requests</td></tr>
+  </tbody>
+</table>
+
+<h3>5.3 Project Files</h3>
+<table>
+  <thead>
+    <tr><th>#</th><th>File</th><th>Location</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>university_ai_bot.ino</td><td>university_ai_bot/</td><td>Main ESP32 firmware — PIR detection, audio I/O, OLED, servo, WiFi HTTP</td></tr>
+    <tr><td>2</td><td>server.py</td><td>backend/</td><td>Flask server — REST API, Gemini STT/AI/TTS, WebSocket for dashboard</td></tr>
+    <tr><td>3</td><td>dashboard.html</td><td>backend/templates/</td><td>Web dashboard — real-time monitoring, query logs, configuration</td></tr>
+    <tr><td>4</td><td>requirements.txt</td><td>backend/</td><td>Python dependencies for pip install</td></tr>
+    <tr><td>5</td><td>.env.example</td><td>backend/</td><td>Environment variable template (GEMINI_API_KEY, WiFi credentials)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!--  6. SYSTEM WORKFLOW                                          -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2>6. System Workflow</h2>
+
+<div class="step">
+  <h3>Step 1: System Initialization (Power On)</h3>
+  <p>On power-up, the ESP32 initializes all modules in sequence: OLED display, PIR sensor, servo motor (centered at 90°), WiFi connection, I2S microphone (Port 0), and I2S speaker (Port 1). A startup screen is shown on the OLED with WiFi connection progress. Once connected, the system enters IDLE state.</p>
+  <p class="chips">Components: ESP32, OLED, PIR, Servo, INMP441, MAX98357A, WiFi</p>
+</div>
+
+<div class="step">
+  <h3>Step 2: Visitor Detection (PIR Motion Sensor)</h3>
+  <p>The PIR sensor on GPIO27 continuously monitors for infrared motion. When a person approaches within 3–7 meters, the sensor output goes HIGH. A 10-second cooldown prevents multiple triggers from the same visitor. Upon detection, the system transitions from IDLE to WELCOME state.</p>
+  <p class="chips">Components: PIR HC-SR501 (GPIO27)</p>
+</div>
+
+<div class="step">
+  <h3>Step 3: Welcome Display (OLED)</h3>
+  <p>The 1.3" OLED displays a welcoming screen: "Welcome to Garden City University" with decorative borders. The message is shown for 2 seconds before proceeding to the greeting phase.</p>
+  <p class="chips">Components: OLED SH1106 (GPIO21 SDA, GPIO19 SCL)</p>
+</div>
+
+<div class="step">
+  <h3>Step 4: Servo Greeting Animation</h3>
+  <p>The SG90 servo motor performs a waving animation — three sweeps between 30° and 150°, then returns to center (90°). This simulates a hand-wave or head-nod greeting. Each wave takes approximately 600ms, totaling ~2 seconds for the full animation.</p>
+  <p class="chips">Components: SG90 Servo (GPIO18, PWM)</p>
+</div>
+
+<div class="step">
+  <h3>Step 5: Audio Greeting (Speaker)</h3>
+  <p>The MAX98357A amplifier plays the greeting message "Hello! How can I help you?" through the speaker. If a pre-recorded WAV file exists in ESP32 SPIFFS, it plays that file. Otherwise, a tone sequence is played as a placeholder. The OLED shows "Speaking: Hello! How can I help you?".</p>
+  <p class="chips">Components: MAX98357A (GPIO25 LRC, GPIO26 BCLK, GPIO22 DIN), Speaker</p>
+</div>
+
+<div class="step">
+  <h3>Step 6: Voice Recording (Microphone)</h3>
+  <p>The INMP441 MEMS microphone records the visitor's question for 5 seconds at 16kHz, 16-bit mono. Audio data is captured via I2S Port 0 and stored in a RAM buffer (~160KB). A progress bar is shown on the OLED. A WAV header is prepended to the raw PCM data.</p>
+  <p class="chips">Components: INMP441 (GPIO33 WS, GPIO32 SCK, GPIO35 SD)</p>
+</div>
+
+<div class="step">
+  <h3>Step 7: Audio Transmission (WiFi HTTP POST)</h3>
+  <p>The recorded WAV audio is sent via HTTP POST to the backend server at the configured URL. The Content-Type is set to application/octet-stream. The total payload is approximately 160KB + 44 bytes (WAV header). Timeout is set to 30 seconds to allow for AI processing. The OLED shows "Processing..." with animation.</p>
+  <p class="chips">Components: ESP32 WiFi, HTTPClient</p>
+</div>
+
+<div class="step">
+  <h3>Step 8: AI Processing (Backend Server)</h3>
+  <p>The Flask server receives the audio and performs three operations:</p>
+  <p><b>8a. Speech-to-Text:</b> Uploads audio to Google Gemini API for transcription using the multimodal model (gemini-2.0-flash).</p>
+  <p><b>8b. AI Query Processing:</b> Sends the transcribed text to Gemini with a university-specific system prompt containing information about departments, admissions, facilities, events, etc.</p>
+  <p><b>8c. Text-to-Speech:</b> Converts the AI response text to speech audio using Gemini TTS (gemini-2.5-flash-preview-tts), outputting 16kHz 16-bit mono WAV for ESP32 playback.</p>
+  <p>The server returns a JSON response: { text, audio (base64 WAV), transcription, processing_time }.</p>
+  <p class="chips">Components: Flask Server, Google Gemini API (STT + AI + TTS)</p>
+</div>
+
+<div class="step">
+  <h3>Step 9: Response Display and Playback</h3>
+  <p>The ESP32 receives the JSON response and performs two actions simultaneously:</p>
+  <p><b>OLED Display:</b> The text response is word-wrapped and displayed on the 128×64 OLED. If the text exceeds 4 lines, it scrolls to a second screen after 3 seconds.</p>
+  <p><b>Speaker Playback:</b> The base64-encoded audio is decoded back to WAV, and the PCM data is streamed through I2S Port 1 to the MAX98357A amplifier and speaker.</p>
+  <p class="chips">Components: OLED (I2C), MAX98357A (I2S), Speaker</p>
+</div>
+
+<div class="step">
+  <h3>Step 10: Follow-up Check</h3>
+  <p>After the response, the system displays "Any other questions?" and listens for 2 seconds using a simple energy-based speech detection algorithm. If speech is detected (average energy above threshold), the system loops back to Step 6 (recording). If no speech is detected, it proceeds to goodbye.</p>
+  <p class="chips">Components: INMP441 (energy detection), OLED</p>
+</div>
+
+<div class="step">
+  <h3>Step 11: Goodbye and Return to Idle</h3>
+  <p>The OLED displays "Thank You! Visit us again — Garden City University" with decorative borders. The servo performs one final wave animation. After 3 seconds, the system returns to IDLE state, displaying the ready screen and waiting for the next visitor.</p>
+  <p class="chips">Components: OLED, Servo, All modules return to standby</p>
+</div>
+
+<!-- ============================================================ -->
+<!--  7. COMMUNICATION PROTOCOL                                   -->
+<!-- ============================================================ -->
+<hr>
+<h2>7. Communication Protocol</h2>
+
+<table>
+  <thead>
+    <tr><th>Direction</th><th>Method</th><th>Endpoint</th><th>Content-Type</th><th>Payload</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ESP32 → Server</td><td>POST</td><td>/api/query</td><td>application/octet-stream</td><td>Raw WAV audio bytes (~160KB)</td></tr>
+    <tr><td>Server → ESP32</td><td>Response</td><td>—</td><td>application/json</td><td>{ text, audio (base64), transcription, processing_time }</td></tr>
+    <tr><td>ESP32 → Server</td><td>POST</td><td>/api/status</td><td>application/json</td><td>{ device, ip, rssi, free_heap }</td></tr>
+    <tr><td>Browser → Server</td><td>WebSocket</td><td>/</td><td>Socket.IO</td><td>Real-time status, logs, config updates</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!--  8. POWER DISTRIBUTION                                       -->
+<!-- ============================================================ -->
+<hr>
+<h2>8. Power Distribution</h2>
+
+<table>
+  <thead>
+    <tr><th>Voltage Rail</th><th>Source</th><th>Components Powered</th><th>Est. Current</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>5V</td><td>External 5V/2A Supply</td><td>ESP32 (VIN/USB), SG90 Servo, MAX98357A, PIR Sensor</td><td>~1.2A peak</td></tr>
+    <tr><td>3.3V</td><td>ESP32 Onboard Regulator</td><td>INMP441 Microphone, 1.3" OLED Display</td><td>~50mA</td></tr>
+    <tr><td>GND</td><td>Common Ground</td><td>All components share a single ground plane</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Power Budget:</strong> ESP32 (~240mA WiFi active) + Servo (~500mA stall) + MAX98357A (~300mA peak) + PIR (~65mA) + INMP441 (~1.4mA) + OLED (~20mA) = ~1.13A peak. A 5V/2A supply provides adequate headroom.
+</div>
+
+<!-- ============================================================ -->
+<!--  9. SETUP INSTRUCTIONS                                       -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2>9. Quick Setup Instructions</h2>
+
+<div class="step">
+  <h3>Step 1: Hardware Assembly</h3>
+  <p>Connect all components to the ESP32 according to the pin mapping in Section 3 and wiring diagram in Section 4. Ensure all grounds are connected together. Power the circuit with a 5V/2A supply.</p>
+</div>
+
+<div class="step">
+  <h3>Step 2: Arduino IDE Setup</h3>
+  <p>Install Arduino IDE 2.x. Add ESP32 board support: File → Preferences → Additional Board Manager URLs → add <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>. Install "ESP32 by Espressif Systems" from Board Manager. Install libraries: U8g2, ESP32Servo, ArduinoJson from Library Manager.</p>
+</div>
+
+<div class="step">
+  <h3>Step 3: Configure Firmware</h3>
+  <p>Open <code>university_ai_bot.ino</code>. Edit the WiFi credentials (WIFI_SSID, WIFI_PASSWORD) and the backend server URL (SERVER_URL — your computer's local IP, e.g., http://192.168.1.100:5000/api/query). Select board "ESP32 Dev Module" and upload.</p>
+</div>
+
+<div class="step">
+  <h3>Step 4: Backend Server Setup</h3>
+  <p>Install Python 3.9+. Navigate to the <code>backend/</code> folder. Copy <code>.env.example</code> to <code>.env</code> and add your Gemini API key (get free key at https://aistudio.google.com/apikey). Run: <code>pip install -r requirements.txt</code>, then <code>python server.py</code>.</p>
+</div>
+
+<div class="step">
+  <h3>Step 5: Test the System</h3>
+  <p>Open the dashboard at http://localhost:5000 in a browser. Power on the ESP32. Verify "Bot Online" status appears on the dashboard. Wave your hand in front of the PIR sensor. The OLED should show the welcome message, the servo should wave, and the speaker should play the greeting. Speak a question and verify the AI response cycle completes.</p>
+</div>
+
+<!-- ============================================================ -->
+<!--  FOOTER                                                      -->
+<!-- ============================================================ -->
+<hr>
+<p style="text-align: center; font-size: 10px; color: #999; margin-top: 12px;">
+  AI Welcome Bot — Garden City University — Component List and Workflow Documentation<br>
+  To save as PDF: Press Ctrl+P (Windows) or Cmd+P (Mac) → Select "Save as PDF" → Click Save
+</p>
+
+</body>
+</html>
